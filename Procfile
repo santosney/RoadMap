@@ -1,0 +1,1 @@
+web : gunicorn gitsaf.wsgi --log-file -
