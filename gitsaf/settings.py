@@ -97,11 +97,11 @@ WSGI_APPLICATION = 'gitsaf.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'dbrqt0ug2cc4aj',
-        'USER': 'yyoyxmufiwlpww',
-        'PASSWORD': 'a87af1a9cb4ea46b1f7c4ce19b88fc775d284b13af5625f12c6853270c6cae5f',
-        'HOST': 'ec2-54-236-156-167.compute-1.amazonaws.com',
-        'PORT': '5432'
+        'NAME': 'Roadmap',
+        'USER': 'postgres',
+        'PASSWORD': 'admin',
+        'HOST': 'localhost',
+        'PORT': '5435'
     }
  }
 
