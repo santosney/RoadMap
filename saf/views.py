@@ -81,4 +81,6 @@ def delete_user(request, id):
     serialize = UserSerialize(queryset)
     serialize.delete()
     
+
+    
       
