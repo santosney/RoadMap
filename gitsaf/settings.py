@@ -27,7 +27,8 @@ SECRET_KEY = 'django-insecure-*^^^0k27*u3#%fry@abb1c#ra$40i@2^g1=tgeqg_vn48k%+4p
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['https://floating-beyond-93668.herokuapp.com',
+ALLOWED_HOSTS = [
+    'https://roadmapsaf.herokuapp.com/',
     'localhost',
     '127.0.0.1', 
 ]

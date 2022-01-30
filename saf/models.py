@@ -1,6 +1,3 @@
-from dataclasses import field
-from pyexpat import model
-from turtle import st
 from django.db import models
 
 # Create your models here.
