@@ -1,5 +1,3 @@
-from msilib.schema import ServiceInstall
-from urllib import response
 from rest_framework import status
 
 from django.http import HttpResponse, JsonResponse
@@ -13,7 +11,6 @@ from rest_framework.decorators import api_view
 from rest_framework import viewsets
 from rest_framework import permissions
 from saf.serialieur import UserSerialize, publicationSerialize
-from saf.models import User, Publication
 
 
 # Create your views here.
