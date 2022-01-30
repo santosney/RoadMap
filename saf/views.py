@@ -80,7 +80,7 @@ def delete_user(request, id):
     queryset = User.objects.get(id = id)
     serialize = UserSerialize(queryset)
     serialize.delete()
-    
+    return HttpResponse('user deleted !')
 
     
       
