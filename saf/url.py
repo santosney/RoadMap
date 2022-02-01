@@ -10,5 +10,6 @@ urlpatterns = [
     path('addPublication/', views.addPublication),
     path('UpdateUser/<int:id>/', views.UpdateUser),
     path('UpdatePublication/<int:id>/', views.UpdatePublication),
+    path('login/', views.login),
     
 ]

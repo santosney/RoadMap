@@ -82,5 +82,12 @@ def delete_user(request, id):
     serialize.delete()
     return HttpResponse('user deleted !')
 
+@api_view(['POST'])
+def login(request):
+    user_name = request.data['user_name']
+    password = request.data['password']
+    queryset = User.objects.all().filter(user_name = str(user_name)).filter(password = str(password))
+    serialize = UserSerialize(queryset, many = True)
+    return JsonResponse(serialize.data, safe=False)
     
-      
+ 
