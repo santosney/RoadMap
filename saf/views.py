@@ -71,22 +71,24 @@ def login(request):
     
 ############# put ################
 @api_view(['PUT'])     
-def UpdateUser(request, id):
-     queryset = User.objects.get(id=id)
-     serialize = UserSerialize(queryset, data = request.data)
-     if serialize.is_valid():
+def UpdateUser(request):
+    id = request.data['id']
+    queryset = User.objects.get(id=id)
+    serialize = UserSerialize(queryset, data = request.data)
+    if serialize.is_valid():
          serialize.save()
          return JsonResponse(serialize.data)
-     return JsonResponse(serialize.errors, status=400)
+    return JsonResponse(serialize.errors, status=400)
 
 @api_view(['PUT'])     
-def UpdatePublication(request, id):
-     queryset = User.objects.get(id=id)
-     serialize = publicationSerialize(queryset, data = request.data)
-     if serialize.is_valid():
-         serialize.save()
-         return JsonResponse(serialize.data)
-     return JsonResponse(serialize.errors, status=400)
+def UpdatePublication(request):
+    id = request.data['id']
+    queryset = Publication.objects.get(id=id)
+    serialize = AddPublicaionSerializeur(queryset, data = request.data)
+    if serialize.is_valid():
+        serialize.save()
+        return JsonResponse(serialize.data)
+    return JsonResponse(serialize.errors, status=400)
  
  ###########  delete ################
 

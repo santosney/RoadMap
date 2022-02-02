@@ -20,7 +20,7 @@ class  publicationListSerialize(serializers.ModelSerializer):
   
     class Meta:
         model = Publication
-        fields = ['data', 'date_publication',  'status', 'user_id', 'id', 'user','username']
+        fields = ['data', 'date_publication',  'status', 'id', 'user','username']
         
     def get_username(self,obj):
         return obj.user.user_name
@@ -29,4 +29,4 @@ class  publicationListSerialize(serializers.ModelSerializer):
 class AddPublicaionSerializeur(serializers.ModelSerializer):
     class Meta:
         model = Publication
-        fields = ['data', 'date_publication', 'status', 'user']
+        fields = ['data', 'date_publication', 'status', 'user', 'id']
