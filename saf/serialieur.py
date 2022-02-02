@@ -1,5 +1,4 @@
 # from django.contrib.auth.models import User, Group
-from dataclasses import field
 from rest_framework import serializers
 from saf.models import User, Publication
 
@@ -26,11 +25,6 @@ class  publicationListSerialize(serializers.ModelSerializer):
     def get_username(self,obj):
         return obj.user.user_name
 
-# class  publicationSerialize(serializers.HyperlinkedModelSerializer):
-#     class Meta:
-#         model = Publication
-       
-#         fields = ['data', 'date_publication',  'status', 'user_id']
         
 class AddPublicaionSerializeur(serializers.ModelSerializer):
     class Meta:
