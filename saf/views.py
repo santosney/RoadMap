@@ -1,3 +1,4 @@
+from pickle import TRUE
 from rest_framework import status
 
 from django.http import HttpResponse, JsonResponse
@@ -30,13 +31,13 @@ class PublicationViewSet(viewsets.ModelViewSet):
 def listuser(request):
         queryset = User.objects.all()
         serialze = UserListSerialize(queryset, many=True)
-        return JsonResponse(serialze.data, safe=False)
+        return HttpResponse(serialze.data, status=200)
 
 @api_view(['GET'])  
 def lis_publication(request):
         queryset = Publication.objects.all()
         serialize = publicationListSerialize(queryset, many=True)
-        return JsonResponse(serialize.data, safe=False)
+        return HttpResponse(serialize.data, status=200)
 
 ############ post ####################
 @api_view(['POST'])
@@ -45,8 +46,8 @@ def addUser(request, *args, **kwards):
         serializer = UserSerialize(data=data)
         if serializer.is_valid():
             serializer.save()
-            return JsonResponse(serializer.data, status=status.HTTP_201_CREATED)
-        return JsonResponse(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+            return HttpResponse(serializer.data, status=status.HTTP_201_CREATED)
+        return HttpResponse(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(['POST'])
 def addPublication(request, *args, **kwards):
@@ -54,8 +55,8 @@ def addPublication(request, *args, **kwards):
         serializer = AddPublicaionSerializeur(data=data)
         if serializer.is_valid():
             serializer.save()
-            return JsonResponse(serializer.data, status=status.HTTP_201_CREATED)
-        return JsonResponse(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+            return HttpResponse(serializer.data, status=status.HTTP_201_CREATED)
+        return HttpResponse(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
 @api_view(['POST'])
 def login(request):
@@ -77,8 +78,8 @@ def UpdateUser(request):
     serialize = UserSerialize(queryset, data = request.data)
     if serialize.is_valid():
          serialize.save()
-         return JsonResponse(serialize.data)
-    return JsonResponse(serialize.errors, status=400)
+         return HttpResponse(serialize.data)
+    return HttpResponse(serialize.errors, status=400)
 
 @api_view(['PUT'])     
 def UpdatePublication(request):
@@ -87,17 +88,29 @@ def UpdatePublication(request):
     serialize = AddPublicaionSerializeur(queryset, data = request.data)
     if serialize.is_valid():
         serialize.save()
-        return JsonResponse(serialize.data)
-    return JsonResponse(serialize.errors, status=400)
- 
+        return HttpResponse(serialize.data)
+    return HttpResponse(serialize.errors, status=400)
+
+         ##### DELETE PUBLICATION  ##################
+@api_view(['PUT'])     
+def deletePublication(request):
+    id = request.data['id']
+    # status = True
+    queryset = Publication.objects.filter(id =id).update(status = 'false')
+    # serialize = AddPublicaionSerializeur(queryset, many=True)     
+    print(queryset)
+    # serialize.save()
+    return HttpResponse('delete')
+    
+
+
  ###########  delete ################
 
 @api_view(['DELETE'])
-def delete_user(request, id):
-    queryset = User.objects.get(id = id)
-    serialize = UserSerialize(queryset)
-    serialize.delete()
-    return HttpResponse('user deleted !')
+def delete_user(request):
+    id = request.data['id']
+    queryset = User.objects.filter(id=id).delete()
+    return HttpResponse(queryset)
 
 
     
