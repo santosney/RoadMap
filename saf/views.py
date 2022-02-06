@@ -1,3 +1,4 @@
+import json
 from pickle import TRUE
 from rest_framework import status
 
@@ -31,13 +32,13 @@ class PublicationViewSet(viewsets.ModelViewSet):
 def listuser(request):
         queryset = User.objects.all()
         serialze = UserListSerialize(queryset, many=True)
-        return HttpResponse(serialze.data, status=200)
+        return HttpResponse(json.dumps(serialze.data))
 
 @api_view(['GET'])  
 def lis_publication(request):
         queryset = Publication.objects.all()
         serialize = publicationListSerialize(queryset, many=True)
-        return HttpResponse(serialize.data, status=200)
+        return HttpResponse(json.dumps(serialize.data))
 
 ############ post ####################
 @api_view(['POST'])
@@ -78,8 +79,8 @@ def UpdateUser(request):
     serialize = UserSerialize(queryset, data = request.data)
     if serialize.is_valid():
          serialize.save()
-         return HttpResponse(serialize.data)
-    return HttpResponse(serialize.errors, status=400)
+         return JsonResponse(serialize.data)
+    return JsonResponse(serialize.errors, salfe=False)
 
 @api_view(['PUT'])     
 def UpdatePublication(request):
