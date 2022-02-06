@@ -29,9 +29,9 @@ DEBUG = False
 
 ALLOWED_HOSTS = [
     # 'https://roadmapsaf.herokuapp.com/',
-    # 'localhost',
-    # '127.0.0.1', 
-    '*'
+    
+    '*', 
+   
 ]
 
 
@@ -46,7 +46,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    
+    'corsheaders',
    
 ]
 
@@ -54,6 +54,7 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
@@ -110,6 +111,20 @@ REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 10
 }
+
+CROS_ORIGIN_ALLOW_ALL = True
+
+CORS_ALLOW_HEADERS  =  [ 
+    "accept" , 
+    "accept-encoding" , 
+    "authorization" , 
+    "content-type" , 
+    "dnt" , 
+    "origin" , 
+    "user-agent" , 
+    "x-csrftoken" , 
+    "x-requested-with" , 
+]
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
