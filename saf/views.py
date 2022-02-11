@@ -56,7 +56,7 @@ def addPublication(request, *args, **kwards):
         serializer = AddPublicaionSerializeur(data=data)
         if serializer.is_valid():
             serializer.save()
-            return HttpResponse("publication is added", status=status.HTTP_201_CREATED)
+            return HttpResponse(json.dumps("publication added"))
         return HttpResponse(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
 @api_view(['POST'])
