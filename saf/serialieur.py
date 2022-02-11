@@ -12,7 +12,7 @@ class UserSerialize(serializers.ModelSerializer):
 class UserListSerialize(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ['first_name', 'last_name', 'user_name', 'id']
+        fields = ['first_name', 'last_name', 'user_name', 'id', 'password']
 
 ######### Publication #################
 class  publicationListSerialize(serializers.ModelSerializer):
