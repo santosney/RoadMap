@@ -132,7 +132,8 @@ CORS_ALLOW_HEADERS = (
     'X_FILENAME',
     'accept-encoding',
     'authorization',
-    'content-type',
+    'Content-Type: application/json',
+    'Accept: application/json'
     'dnt',
     'origin',
     'user-agent',

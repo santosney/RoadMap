@@ -18,7 +18,7 @@ class Publication(models.Model):
     data = models.CharField(default="votre description du jours", max_length=120)
     date_publication = models.DateTimeField(verbose_name="date de publication",  auto_now=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    status = models.BooleanField(default=True)
+    status = models.BooleanField(default=False)
     
     def __Create__(self):
         return self.data

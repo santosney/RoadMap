@@ -63,6 +63,7 @@ def addPublication(request, *args, **kwards):
 def login(request):
     user_name = request.data['user_name']
     password = request.data['password']
+    print(request)
     status_login = False
     if User.objects.all().filter(user_name = str(user_name)).filter(password = str(password)):
         status_login = True
@@ -97,11 +98,11 @@ def UpdatePublication(request):
 def deletePublication(request):
     id = request.data['id']
     # status = True
-    queryset = Publication.objects.filter(id =id).update(status = 'false')
+    queryset = Publication.objects.filter(id =id).update(status = 'True')
     # serialize = AddPublicaionSerializeur(queryset, many=True)     
     print(queryset)
     # serialize.save()
-    return HttpResponse('delete')
+    return HttpResponse('delete')   
     
 
 
