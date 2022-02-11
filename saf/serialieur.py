@@ -16,13 +16,13 @@ class UserListSerialize(serializers.ModelSerializer):
 
 ######### Publication #################
 class  publicationListSerialize(serializers.ModelSerializer):
-    username = serializers.SerializerMethodField()
+    user_name = serializers.SerializerMethodField()
   
     class Meta:
         model = Publication
-        fields = ['data', 'date_publication',  'status', 'id', 'user','username']
+        fields = ['data', 'date_publication',  'status', 'id', 'user','user_name']
         
-    def get_username(self,obj):
+    def get_user_name(self,obj):
         return obj.user.user_name
 
         

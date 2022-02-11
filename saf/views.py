@@ -47,7 +47,7 @@ def addUser(request, *args, **kwards):
         serializer = UserSerialize(data=data)
         if serializer.is_valid():
             serializer.save()
-            return HttpResponse(serializer.data, status=status.HTTP_201_CREATED)
+            return HttpResponse("user added", status=status.HTTP_201_CREATED)
         return HttpResponse(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(['POST'])
@@ -56,7 +56,7 @@ def addPublication(request, *args, **kwards):
         serializer = AddPublicaionSerializeur(data=data)
         if serializer.is_valid():
             serializer.save()
-            return HttpResponse(serializer.data, status=status.HTTP_201_CREATED)
+            return HttpResponse("publication is added", status=status.HTTP_201_CREATED)
         return HttpResponse(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
 @api_view(['POST'])
@@ -90,7 +90,7 @@ def UpdatePublication(request):
     serialize = AddPublicaionSerializeur(queryset, data = request.data)
     if serialize.is_valid():
         serialize.save()
-        return HttpResponse(serialize.data)
+        return HttpResponse("update success")
     return HttpResponse(serialize.errors, status=400)
 
          ##### DELETE PUBLICATION  ##################
