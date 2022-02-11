@@ -67,8 +67,8 @@ def login(request):
     status_login = False
     if User.objects.all().filter(user_name = str(user_name)).filter(password = str(password)):
         status_login = True
-        return HttpResponse(status_login)
-    return HttpResponse(status_login)
+        return HttpResponse(json.dumps(status_login))
+    return HttpResponse(json.dumps(status_login))
   
     
     
