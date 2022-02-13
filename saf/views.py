@@ -36,11 +36,11 @@ def listuser(request):
 
 @api_view(['GET'])  
 def lis_publication(request):
-        queryset = Publication.objects.all()
+        queryset = Publication.objects.all().filter()
         serialize = publicationListSerialize(queryset, many=True)
         return HttpResponse(json.dumps(serialize.data))
     
-@api_view(['GET'])
+@api_view(['POST'])
 def publcation_user(request):
     user = request.data['user']
     queryset = Publication.objects.filter(user = user)
@@ -54,7 +54,7 @@ def addUser(request, *args, **kwards):
         serializer = UserSerialize(data=data)
         if serializer.is_valid():
             serializer.save()
-            return HttpResponse("user added", status=status.HTTP_201_CREATED)
+            return HttpResponse(json.dumps(serializer.data), status=status.HTTP_201_CREATED)
         return HttpResponse(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(['POST'])
@@ -63,7 +63,7 @@ def addPublication(request, *args, **kwards):
         serializer = AddPublicaionSerializeur(data=data)
         if serializer.is_valid():
             serializer.save()
-            return HttpResponse(json.dumps("publication added"))
+            return HttpResponse(json.dumps(serializer.data))
         return HttpResponse(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
 @api_view(['POST'])
