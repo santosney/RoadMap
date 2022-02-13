@@ -66,21 +66,20 @@ def addPublication(request, *args, **kwards):
             return HttpResponse(json.dumps(serializer.data))
         return HttpResponse(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
+    #####  login ########
 @api_view(['POST'])
 def login(request):
     user_name = request.data['user_name']
     password = request.data['password']
-    print(request)
     status_login = False
     queryset = User.objects.all().filter(user_name = str(user_name)).filter(password = str(password))
     serialize = UserListSerialize(queryset, many=True)
-    if serialize:                                                                                           
+    if queryset :                                                                                        
         status_login = True
         return HttpResponse(json.dumps({'status': status_login, 'user': serialize.data[0]}))
-    return HttpResponse(json.dumps(status_login))
+    return HttpResponse(json.dumps({'status': status_login, 'user': {}}))
+    
   
-    
-    
 ############# put ################
 @api_view(['PUT'])     
 def UpdateUser(request):
