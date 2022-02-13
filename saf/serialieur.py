@@ -1,4 +1,5 @@
 # from django.contrib.auth.models import User, Group
+from dataclasses import field
 from rest_framework import serializers
 from saf.models import User, Publication
 
@@ -30,3 +31,13 @@ class AddPublicaionSerializeur(serializers.ModelSerializer):
     class Meta:
         model = Publication
         fields = ['data', 'date_publication', 'status', 'user', 'id']
+        
+class UpdatepublicationSerialze(serializers.ModelSerializer):
+    class Meta:
+        model = Publication
+        fields = ['id', 'user', 'data']
+        
+class DeletePublicationserialize(serializers.ModelSerializer):
+    class Meta:
+        model = Publication
+        fields = ['id', 'status']

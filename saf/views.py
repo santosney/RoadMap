@@ -12,7 +12,7 @@ from rest_framework import authentication, permissions
 from rest_framework.decorators import api_view
 from rest_framework import viewsets
 from rest_framework import permissions
-from saf.serialieur import UserSerialize, AddPublicaionSerializeur, UserListSerialize, publicationListSerialize
+from saf.serialieur import UserSerialize, AddPublicaionSerializeur, UserListSerialize, publicationListSerialize, UpdatepublicationSerialze, DeletePublicationserialize
 
 
 # Create your views here.
@@ -88,14 +88,14 @@ def UpdateUser(request):
     serialize = UserSerialize(queryset, data = request.data)
     if serialize.is_valid():
          serialize.save()
-         return JsonResponse(serialize.data)
-    return JsonResponse(serialize.errors, salfe=False)
+         return HttpResponse(json.dumps(serialize.data))
+    return HttpResponse(serialize.errors)
 
 @api_view(['PUT'])     
 def UpdatePublication(request):
     id = request.data['id']
     queryset = Publication.objects.get(id=id)
-    serialize = AddPublicaionSerializeur(queryset, data = request.data)
+    serialize = UpdatepublicationSerialze(queryset, data = request.data)
     if serialize.is_valid(): 
         serialize.save()
         return HttpResponse(json.dumps(serialize.data))
@@ -105,11 +105,10 @@ def UpdatePublication(request):
 @api_view(['PUT'])     
 def deletePublication(request):
     id = request.data['id']
-    # status = True
-    queryset = Publication.objects.filter(id=id).update(status='True')
-    # serialize = AddPublicaionSerializeur(queryset, many=True)     
-    print(queryset)
-    # serialize.save()
+    queryset = Publication.objects.filter(id=id).update(status='true')
+    serialize = DeletePublicationserialize(queryset, many=True)
+    if serialize.is_valid():
+        serialize.save()
     return HttpResponse(json.dumps({'publication': 'deleted'}))   
     
 
