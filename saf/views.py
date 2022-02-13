@@ -72,9 +72,11 @@ def login(request):
     password = request.data['password']
     print(request)
     status_login = False
-    if User.objects.all().filter(user_name = str(user_name)).filter(password = str(password)):
+    queryset = User.objects.all().filter(user_name = str(user_name)).filter(password = str(password))
+    serialize = UserListSerialize(queryset, many=True)
+    if serialize:
         status_login = True
-        return HttpResponse(json.dumps(status_login))
+        return HttpResponse(json.dumps(serialize.data))
     return HttpResponse(json.dumps(status_login))
   
     
@@ -105,7 +107,7 @@ def UpdatePublication(request):
 def deletePublication(request):
     id = request.data['id']
     # status = True
-    queryset = Publication.objects.filter(id =id).update(status = 'True')
+    queryset = Publication.objects.filter(id=id).update(status='True')
     # serialize = AddPublicaionSerializeur(queryset, many=True)     
     print(queryset)
     # serialize.save()
