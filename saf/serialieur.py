@@ -40,4 +40,4 @@ class UpdatepublicationSerialze(serializers.ModelSerializer):
 class DeletePublicationserialize(serializers.ModelSerializer):
     class Meta:
         model = Publication
-        fields = ['id', 'status']
+        fields = ['id']

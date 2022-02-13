@@ -95,7 +95,6 @@ def UpdatePublication(request):
     queryset = Publication.objects.get(id=id)
     serialize = UpdatepublicationSerialze(queryset, data = request.data)
     if serialize.is_valid(): 
-        serialize.save()
         return HttpResponse(json.dumps(serialize.data))
     return HttpResponse(serialize.errors, status=400)
 
@@ -104,6 +103,7 @@ def UpdatePublication(request):
 def deletePublication(request):
     id = request.data['id']
     queryset = Publication.objects.filter(id=id).update(status='true')
+    print(queryset)
     serialize = DeletePublicationserialize(queryset, many=True)
     if serialize.is_valid():
         serialize.save()
