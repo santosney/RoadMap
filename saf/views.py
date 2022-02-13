@@ -74,9 +74,9 @@ def login(request):
     status_login = False
     queryset = User.objects.all().filter(user_name = str(user_name)).filter(password = str(password))
     serialize = UserListSerialize(queryset, many=True)
-    if serialize:
+    if serialize:                                                                                           
         status_login = True
-        return HttpResponse(json.dumps(serialize.data))
+        return HttpResponse(json.dumps({'status': status_login, 'user': serialize.data[0]}))
     return HttpResponse(json.dumps(status_login))
   
     
