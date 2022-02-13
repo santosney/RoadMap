@@ -39,7 +39,14 @@ def lis_publication(request):
         queryset = Publication.objects.all()
         serialize = publicationListSerialize(queryset, many=True)
         return HttpResponse(json.dumps(serialize.data))
-
+    
+@api_view(['GET'])
+def publcation_user(request):
+    user = request.data['user']
+    queryset = Publication.objects.filter(user = user)
+    serialize = publicationListSerialize(queryset, many=True)
+    return HttpResponse(json.dumps(serialize.data))
+    
 ############ post ####################
 @api_view(['POST'])
 def addUser(request, *args, **kwards):
@@ -88,7 +95,7 @@ def UpdatePublication(request):
     id = request.data['id']
     queryset = Publication.objects.get(id=id)
     serialize = AddPublicaionSerializeur(queryset, data = request.data)
-    if serialize.is_valid():
+    if serialize.is_valid(): 
         serialize.save()
         return HttpResponse("update success")
     return HttpResponse(serialize.errors, status=400)
