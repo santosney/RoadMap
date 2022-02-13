@@ -98,7 +98,7 @@ def UpdatePublication(request):
     serialize = AddPublicaionSerializeur(queryset, data = request.data)
     if serialize.is_valid(): 
         serialize.save()
-        return HttpResponse("update success")
+        return HttpResponse(json.dumps(serialize.data))
     return HttpResponse(serialize.errors, status=400)
 
          ##### DELETE PUBLICATION  ##################
@@ -110,7 +110,7 @@ def deletePublication(request):
     # serialize = AddPublicaionSerializeur(queryset, many=True)     
     print(queryset)
     # serialize.save()
-    return HttpResponse('delete')   
+    return HttpResponse(json.dumps({'publication': 'deleted'}))   
     
 
 
@@ -120,7 +120,7 @@ def deletePublication(request):
 def delete_user(request):
     id = request.data['id']
     queryset = User.objects.filter(id=id).delete()
-    return HttpResponse(queryset)
+    return HttpResponse(json.dumps(queryset))
 
 
     
