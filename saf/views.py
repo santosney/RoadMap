@@ -95,6 +95,7 @@ def UpdatePublication(request):
     queryset = Publication.objects.get(id=id)
     serialize = UpdatepublicationSerialze(queryset, data = request.data)
     if serialize.is_valid(): 
+        serialize.save()
         return HttpResponse(json.dumps(serialize.data))
     return HttpResponse(serialize.errors, status=400)
 
