@@ -120,6 +120,9 @@ def delete_user(request):
     queryset = User.objects.filter(id=id).delete()
     return HttpResponse(json.dumps(queryset))
 
-
-    
+@api_view(['DELETE'])
+def deletepublication(request):
+    id = request.data['id']
+    queryset = Publication.objects.filter(id=id).delete()
+    return HttpResponse(json.dumps({'publication': 'deleted'}))
  

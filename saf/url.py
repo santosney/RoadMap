@@ -13,6 +13,7 @@ urlpatterns = [
     path('UpdatePublication', views.UpdatePublication),
     path('login', views.login),
     path('delete_user', views.delete_user),
-    path('deletePublication', views.deletePublication)
+    path('deletePublication', views.deletePublication),
+    path('deletePub', views.deletepublication),
     
 ]
