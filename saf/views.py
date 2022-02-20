@@ -100,14 +100,10 @@ def UpdatePublication(request):
     return HttpResponse(serialize.errors, status=400)
 
          ##### DELETE PUBLICATION  ##################
-@api_view(['PUT'])     
+@api_view(['POST'])     
 def deletePublication(request):
-    id = request.data['id']
-    queryset = Publication.objects.filter(id=id).update(status='true')
-    print(queryset)
-    serialize = DeletePublicationserialize(queryset, many=True)
-    if serialize.is_valid():
-        serialize.save()
+    id = request.data['id'] 
+    queryset = Publication.objects.filter(id=id).update(status=True)
     return HttpResponse(json.dumps({'publication': 'deleted'}))   
     
 
