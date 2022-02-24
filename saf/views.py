@@ -10,6 +10,8 @@ from saf.models import User, Publication
 from rest_framework.decorators import api_view
 from rest_framework import viewsets
 from rest_framework import permissions
+from rest_framework.authentication import SessionAuthentication, BasicAuthentication
+from rest_framework.permissions import IsAuthenticated
 from saf.serialieur import UserSerialize, AddPublicaionSerializeur, UserListSerialize, publicationListSerialize, UpdatepublicationSerialze, DeletePublicationserialize
 
 
@@ -27,6 +29,8 @@ class PublicationViewSet(viewsets.ModelViewSet):
     
 ############# get ################
 @api_view(['GET'])  
+
+
 def listuser(request):
         queryset = User.objects.all()
         serialze = UserListSerialize(queryset, many=True)
